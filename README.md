@@ -1,13 +1,15 @@
-# freeBokuLoader
+# freeMetsrvLoader
 
-A simple BOF that tries to free the memory region where the User Defined Reflective Loader is stored.
+Fork of freeBokuLoader which targets and frees Metsrv's initial reflective DLL package
 
-As the name implies, it was tested against [BokuLoader](https://github.com/boku7/BokuLoader), but should work with most if not all UDRLs.
+![](/images/example_x64.png)
 
-![](/images/example.png)
-
+![](/images/example_x86.png)
 
 ## Usage
+
 ```
-beacon> freeBokuLoader
+meterpreter> execute_bof freeMetsrvLoader.x64.o
 ```
+
+Can be automated with InitialAutoRunScript or AutoRunScript.

@@ -109,7 +109,11 @@ BOOL is_valid_pe(
     PIMAGE_NT_HEADERS pNtHeaders;
 
     // make sure the MZ magic bytes are valid
-    if (*(PUSHORT)base_address == MZ)
+#if defined(_WIN64)
+    if (*(PULONG)base_address == MZ_MET_X64)
+#else
+    if (*(PULONG)base_address == MZ_MET_X86)
+#endif
     {
         pNtHeaders = RVA(
             PIMAGE_NT_HEADERS,
@@ -162,10 +166,10 @@ void go(char* args, int length)
 {
     if (free_udrl())
     {
-        PRINT("Removed the User Defined Reflective Loader :)");
+        PRINT("Metsrv's initial reflective DLL package removed!");
     }
     else
     {
-        PRINT_ERR("Could NOT remove the User Defined Reflective Loader :(");
+        PRINT_ERR("Metsrv's initial reflective DLL package already cleaned (or perhaps could not be removed!)");
     }
 }

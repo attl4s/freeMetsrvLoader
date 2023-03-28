@@ -2,6 +2,10 @@
 #include <windows.h>
 #include <winternl.h>
 
+#define MZ 0x5A4D
+#define MZ_MET_X64 0x52415A4D
+#define MZ_MET_X86 0x00E85A4D
+
 PVOID get_ip(VOID);
 
 BOOL free_udrl(VOID);
@@ -21,8 +25,6 @@ WINBASEAPI int __cdecl MSVCRT$memcmp(const void *_Buf1,const void *_Buf2,size_t 
 #define RVA(type, base_addr, rva) (type)((ULONG_PTR) base_addr + rva)
 
 #define NtCurrentProcess() ( (HANDLE)(LONG_PTR) -1 )
-
-#define MZ 0x5A4D
 
 #ifndef NT_SUCCESS
  #define NT_SUCCESS(Status) ((NTSTATUS)(Status) >= 0)
